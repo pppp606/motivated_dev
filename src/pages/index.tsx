@@ -76,24 +76,24 @@ const Home: NextPage = () => {
     <>
       <div className="flex flex-col h-screen">
         <Header />
-        <div className="flex-grow pt-12">
+        <div className="flex-grow pt-24">
           <div className="max-w-4xl mx-auto pt-12 px-4">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 md:leading-tight">
               Stay motivated<br />
               <span className="text-[#e7152d]">to learn programming!</span>
             </h1>
-            <p className="text-lg mb-2">
+            <p className="text-lg mb-4">
               A rewards program that you set <span className="text-[#e7152d]">yourself</span>
             </p>
-            <p className="text-lg mb-10">
+            <p className="text-lg mb-12">
               Set incentives to reach your goals and stay on track for work and learning to code. <span className="text-[#e7152d]">No need to compete with anyone</span>. Reward yourself for achieving your goals
             </p>
-            <div className="mb-6">
+            <div className="mb-24">
               <h2 className="text-xl font-bold leading-normal mb-2">
                 🚴‍♂️ <span className="text-[#e7152d]">Track</span> your progress
               </h2>
               <p className="text-lg mb-6">Set your goals, e.g. 10 contributions a day on github</p>
-              <div className="flex flex-row mb-12">
+              <div className="flex flex-row">
                 <div className="basis-1/3 text-center">
                   <div className="mx-auto w-[100px] mb-2">
                     <Circle
@@ -126,12 +126,12 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-12">
+            <div className="mb-24">
               <h2 className="text-xl font-bold leading-normal mb-2">
                 🏆 <span className="text-[#e7152d]">Achieved</span> times
               </h2>
               <p className="text-lg mb-6">Decide on a reward for achieving. You may be motivated if you give a bonus when you achieve it in a row</p>
-              <div className="flex flex-row mb-6">
+              <div className="flex flex-row mb-12">
                 <div className="basis-1/3 text-center">
                   <div className="mx-auto w-[100px] mb-2 text-3xl font-bold text-[#e7152d]">
                     <CountUp
@@ -190,7 +190,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-12">
+            <div className="mb-24">
               <h2 className="text-xl font-bold leading-normal mb-2">
                 🎂 Earn points and <span className="text-[#e7152d]">reward yourself</span>
               </h2>
