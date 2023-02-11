@@ -10,6 +10,7 @@ const Chart = dynamic(() =>
   import("react-apexcharts"), {
   ssr: false,
 })
+import { ApexOptions } from 'apexcharts';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -22,46 +23,47 @@ const Home: NextPage = () => {
     router.push("/login");
   };
 
-  const chartData = {
-    options: {
-      chart: {
-        id: "basic-bar",
-        toolbar: {
-          show: false,
-        },
-        animations: {
-          easing: 'easeout',
-          speed: 600,
-        },
+  const chartOptions: ApexOptions = {
+    chart: {
+      id: "basic-bar",
+      toolbar: {
+        show: false,
       },
-      annotations: {
-        yaxis: [{
-          y: 100,
-          borderColor: '#e7152d',
-          label: {
-            borderColor: '#e7152d',
-            style: {
-              color: '#fff',
-              background: '#e7152d',
-            },
-            text: 'Buy MBP 💻',
-          }
-        }],
-      },
-      xaxis: {
-        type: 'datetime',
-        categories: ['1/4/2023', '1/5/2023', '1/6/2023', '1/7/2023', '1/8/2023', '1/9/2023', '1/10/2023', '1/11/2023'],
-        tickAmount: 1,
-      },
-      colors: ["#e7152d"],
-      forecastDataPoints: {
-        count: 3
-      },
-      stroke: {
-        width: 5,
-        curve: 'smooth',
+      animations: {
+        easing: 'easeout',
+        speed: 600,
       },
     },
+    annotations: {
+      yaxis: [{
+        y: 100,
+        borderColor: '#e7152d',
+        label: {
+          borderColor: '#e7152d',
+          style: {
+            color: '#fff',
+            background: '#e7152d',
+          },
+          text: 'Buy MBP 💻',
+        }
+      }],
+    },
+    xaxis: {
+      type: 'datetime',
+      categories: ['1/4/2023', '1/5/2023', '1/6/2023', '1/7/2023', '1/8/2023', '1/9/2023', '1/10/2023', '1/11/2023'],
+      tickAmount: 1,
+    },
+    colors: ["#e7152d"],
+    forecastDataPoints: {
+      count: 3
+    },
+    stroke: {
+      width: 5,
+      curve: 'smooth',
+    },
+  }
+
+  const chartData = {
     series: [
       {
         name: "points",
@@ -196,7 +198,7 @@ const Home: NextPage = () => {
               <div className="mb-6">
                 <div className="-ml-4">
                   <Chart
-                    options={chartData.options}
+                    options={chartOptions}
                     series={chartData.series}
                     type="line"
                     width="100%"
