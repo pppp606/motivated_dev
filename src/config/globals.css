@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #f3f4f5;
+  color: #4e575c;
+}
+
+.contribution {
+  background-color: #9be9a8;
+  border: 1px solid #1b1f230f;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 2px;
+  line-height: 1;
+}
+
+.chartCircle {
+  animation: circleAnimation 1s;
+}
+
+@keyframes circleAnimation {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+/* keep your motivation to study */
