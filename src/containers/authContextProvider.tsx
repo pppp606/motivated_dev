@@ -58,7 +58,13 @@ export const AuthContextProvider: React.FC<Props> = ({
           .select("*")
           .eq("id", session.user.id)
           .single();
-        setUser(user!);
+        
+        setUser({
+          id: user?.id || "",
+          nickname: user?.nickname || "",
+          fullname: user?.fullname || "",
+          avatarurl: user?.avatarurl || "",
+        });
       }
     };
     setupUser();
