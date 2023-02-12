@@ -1,10 +1,13 @@
 import "../config/globals.css";
 import React, { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
+
 import { ThemeProvider } from "@material-tailwind/react";
+import { AuthContextProvider } from "../containers/authContextProvider";
 
 function App({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState<boolean>(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -12,7 +15,9 @@ function App({ Component, pageProps }: AppProps) {
   return mounted ? (
     <>
       <ThemeProvider>
-        <Component {...pageProps} />
+        <AuthContextProvider>
+          <Component {...pageProps} />
+        </AuthContextProvider>
       </ThemeProvider>
     </>
   ) : (

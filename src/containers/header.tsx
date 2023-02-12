@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
 import React from "react";
+import { useAuth } from "../containers/authContextProvider";
 
 export const Header: React.FC = () => {
   const router = useRouter();
+  const { user } = useAuth();
 
   const goSignup = () => {
     router.push("/signup");
@@ -25,10 +27,14 @@ export const Header: React.FC = () => {
         </h1>
         <div className="flex-grow flex items-center w-auto">
           <div className="flex-grow"></div>
-          <div>
-            <a href="#" onClick={goLogin} className="inline-block text-sm px-4 py-2 leading-none border rounded border-[#e7152d] text-[#e7152d] mt-4 mr-2 lg:mt-0">Log in</a>
-            <a href="#" onClick={goSignup} className="inline-block text-sm px-4 py-2 leading-none border rounded bg-[#e7152d] border-[#e7152d]  text-white mt-4 lg:mt-0">Sign Up</a>
-          </div>
+          {user ? (  
+            <div className="text-sm text-[#e7152d]">Welcome, {user?.fullname}</div>
+          ) : (
+            <div>
+              <a href="#" onClick={goLogin} className="inline-block text-sm px-4 py-2 leading-none border rounded border-[#e7152d] text-[#e7152d] mt-4 mr-2 lg:mt-0">Log in</a>
+              <a href="#" onClick={goSignup} className="inline-block text-sm px-4 py-2 leading-none border rounded bg-[#e7152d] border-[#e7152d]  text-white mt-4 lg:mt-0">Sign Up</a>
+            </div>
+          )}
         </div>
       </div>
     </nav>

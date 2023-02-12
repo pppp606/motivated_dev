@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
 import React from "react";
 import { Header } from "../containers/header";
-
+import { useAuth } from "../containers/authContextProvider";
 
 const Home: NextPage = () => {
+  const { signInWithGithub } = useAuth();
 
   const continueWithGitHub = () => { 
-    console.log('continueWithGitHub')
+    signInWithGithub();
   }
 
   return (
