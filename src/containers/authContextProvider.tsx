@@ -3,9 +3,8 @@ import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/supabase-client";
 import { Session } from "@supabase/supabase-js";
 import type { Database } from "../repositories/schema";
-import type { definitions } from "../repositories/types/supabase";
 
-type User = definitions["users"];
+type User = Database["public"]["Tables"]["users"]["Row"];
 
 type AuthContextState = {
   user: User | null;
@@ -32,7 +31,7 @@ interface Props {
 export const AuthContextProvider: React.FC<Props> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Database["public"]["Tables"]["users"]["Row"] | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   
   useEffect(() => {
@@ -58,13 +57,7 @@ export const AuthContextProvider: React.FC<Props> = ({
           .select("*")
           .eq("id", session.user.id)
           .single();
-        
-        setUser({
-          id: user?.id || "",
-          nickname: user?.nickname || "",
-          fullname: user?.fullname || "",
-          avatarurl: user?.avatarurl || "",
-        });
+        setUser(user!);
       }
     };
     setupUser();
