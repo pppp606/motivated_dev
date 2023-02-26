@@ -29,4 +29,7 @@ body {
     stroke-dasharray: 0 100;
   }
 }
-/* keep your motivation to study */
+
+.drawer-bg {
+  background-color: rgb(33 33 33 / 0.5);
+}

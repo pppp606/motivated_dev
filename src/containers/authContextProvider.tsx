@@ -1,5 +1,4 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-
 import { supabase } from "../lib/supabase-client";
 import { Session } from "@supabase/supabase-js";
 import type { Database } from "../repositories/schema";
@@ -14,8 +13,8 @@ type AuthContextState = {
 
 const initialState: AuthContextState = {
   user: null,
-  signInWithGithub: () => { },
-  signOut: () => { }
+  signInWithGithub: () => {},
+  signOut: () => {},
 };
 
 const AuthContext = React.createContext<AuthContextState>(initialState);
@@ -28,12 +27,12 @@ interface Props {
   children: ReactNode;
 }
 
-export const AuthContextProvider: React.FC<Props> = ({
-  children,
-}) => {
-  const [user, setUser] = useState<Database["public"]["Tables"]["users"]["Row"] | null>(null);
+export const AuthContextProvider: React.FC<Props> = ({ children }) => {
+  const [user, setUser] = useState<
+    Database["public"]["Tables"]["users"]["Row"] | null
+  >(null);
   const [session, setSession] = useState<Session | null>(null);
-  
+
   useEffect(() => {
     const getSession = async () => {
       const {
@@ -76,10 +75,6 @@ export const AuthContextProvider: React.FC<Props> = ({
     signInWithGithub,
     signOut,
   };
-  
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

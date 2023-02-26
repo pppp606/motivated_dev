@@ -9,6 +9,12 @@ module.exports = withMT({
     "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      red: {
+        DEFAULT: "#e7152d",
+        500: "#e7152d",
+      }
+    },
     extend: {},
   },
   plugins: [],

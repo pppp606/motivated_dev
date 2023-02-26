@@ -1,26 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { Header } from "../containers/header";
 import { Circle } from "../presenters/chart/circle";
-import { useAuth } from "../containers/authContextProvider";
+import { UserTwoColumn } from "../layouts/userTwoColumn";
 import CountUp from "react-countup";
+import { useAuth } from "../containers/authContextProvider";
 
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 import { ApexOptions } from "apexcharts";
 
-const Home: NextPage = () => {
-  const router = useRouter();
+const Dashboard: NextPage = () => {
   const { user } = useAuth();
-
-  useEffect(() => {
-    if (user) {
-      router.push("/dashboard");
-    }
-  }, [router, user]);
+  console.log(user);
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -83,33 +76,31 @@ const Home: NextPage = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col h-screen">
-        <Header />
-        <div className="flex-grow pt-24">
-          <div className="max-w-4xl mx-auto pt-12 px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 md:leading-tight">
-              Stay motivated
-              <br />
-              <span className="text-red">to learn programming!</span>
-            </h1>
-            <p className="text-lg mb-4">
-              A rewards program that you set{" "}
-              <span className="text-red">yourself</span>
-            </p>
-            <p className="text-lg mb-12">
-              Set incentives to reach your goals and stay on track for work and
-              learning to code.{" "}
-              <span className="text-red">No need to compete with anyone</span>.
-              Reward yourself for achieving your goals
-            </p>
+    <div className="flex flex-col h-screen">
+      <UserTwoColumn>
+        <div className="flex-grow">
+          <div className="px-4">
             <div className="mb-24">
-              <h2 className="text-xl font-bold leading-normal mb-2">
+              <h2 className="text-xl font-bold leading-normal mb-6">
+                🎂 Earn points and{" "}
+                <span className="text-red">reward yourself</span>
+              </h2>
+              <div className="mb-6">
+                <div className="-ml-4">
+                  <Chart
+                    options={chartOptions}
+                    series={chartData.series}
+                    type="line"
+                    width="100%"
+                    height={300}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mb-24">
+              <h2 className="text-xl font-bold leading-normal mb-6">
                 🚴‍♂️ <span className="text-red">Track</span> your progress
               </h2>
-              <p className="text-lg mb-6">
-                Set your goals, e.g. 10 contributions a day on github
-              </p>
               <div className="flex flex-row">
                 <div className="basis-1/3 text-center">
                   <div className="mx-auto w-[100px] mb-2">
@@ -132,13 +123,9 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className="mb-24">
-              <h2 className="text-xl font-bold leading-normal mb-2">
+              <h2 className="text-xl font-bold leading-normal mb-6">
                 🏆 <span className="text-red">Achieved</span> times
               </h2>
-              <p className="text-lg mb-6">
-                Decide on a reward for achieving. You may be motivated if you
-                give a bonus when you achieve it in a row
-              </p>
               <div className="flex flex-row mb-12">
                 <div className="basis-1/3 text-center">
                   <div className="mx-auto w-[100px] mb-2 text-3xl font-bold text-red">
@@ -180,46 +167,11 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-24">
-              <h2 className="text-xl font-bold leading-normal mb-2">
-                🎂 Earn points and{" "}
-                <span className="text-red">reward yourself</span>
-              </h2>
-              <p className="text-lg mb-6">
-                Set a reward line, e.g. buy MBP for 100 points
-              </p>
-              <div className="mb-6">
-                <div className="-ml-4">
-                  <Chart
-                    options={chartOptions}
-                    series={chartData.series}
-                    type="line"
-                    width="100%"
-                    height={300}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mb-12">
-              <h2 className="text-xl font-bold leading-normal mb-4">
-                🚧 Values ​​that can be used for goals
-              </h2>
-              <p className="text-lg">
-                Github contributions count, Codewars Completed Challenges count.
-                and more in preparation
-              </p>
-              <p className="text-lg">
-                If there is a value that motivates you,{" "}
-                <a href="" className="text-red underline">
-                  please request it
-                </a>
-              </p>
-            </div>
           </div>
         </div>
-      </div>
-    </>
+      </UserTwoColumn>
+    </div>
   );
 };
 
-export default Home;
+export default Dashboard;
